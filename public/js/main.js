@@ -46,7 +46,7 @@ async function markUnCompleted() {
 
 async function deleteTodo() {
   try {
-    const response = await fetch("/todos/delete", {
+    const response = await fetch("/todos/deleteTodo", {
       method: "delete",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
