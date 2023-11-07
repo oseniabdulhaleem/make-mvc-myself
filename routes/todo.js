@@ -4,7 +4,7 @@ const todoController = require("../controllers/todo");
 
 router.get("/", todoController.getTodoPage);
 router.put("/markComplete", todoController.markCompleted);
-router.put("/markUnComplete", todoController.markUncompleted);
+router.put("/markUnComplete", todoController.markUnCompleted);
 router.delete("/deleteTodo", todoController.deleteTodo);
 router.post("/createTodo", todoController.createTodo);
 

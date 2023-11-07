@@ -2,17 +2,18 @@ const deleteButton = document.querySelectorAll(".del");
 const todoItem = document.querySelectorAll("span.not");
 const todoComplete = document.querySelectorAll("span.completed");
 Array.from(deleteButton).forEach((val) =>
-  val.addEventListner("click", deleteTodo)
+  val.addEventListener("click", deleteTodo)
 );
 
 Array.from(todoItem).forEach((val) =>
-  val.addEventListner("click", markCompleted)
+  val.addEventListener("click", markCompleted)
 );
-Array.from(todoItem).forEach((val) =>
-  val.addEventListner("click", markUnCompleted)
+Array.from(todoComplete).forEach((val) =>
+  val.addEventListener("click", markUnCompleted)
 );
 
 async function markCompleted() {
+  console.log("hello");
   const todoId = this.parentNode.dataset.id;
   try {
     const response = await fetch("todos/markComplete", {
@@ -22,6 +23,7 @@ async function markCompleted() {
         todoIdFromJSFile: todoId,
       }),
     });
+    alert(response);
     location.reload();
   } catch (err) {
     console.log(err);
@@ -29,6 +31,7 @@ async function markCompleted() {
 }
 
 async function markUnCompleted() {
+  console.log("hello");
   const todoId = this.parentNode.dataset.id;
   try {
     const response = await fetch("/todos/markUncomplete", {
@@ -38,6 +41,7 @@ async function markUnCompleted() {
         todoIdFromJSFile: todoId,
       }),
     });
+    console.log(response);
     location.reload();
   } catch (err) {
     console.log(err);
@@ -45,6 +49,8 @@ async function markUnCompleted() {
 }
 
 async function deleteTodo() {
+  console.log("hello");
+  const todoId = this.parentNode.dataset.id;
   try {
     const response = await fetch("/todos/deleteTodo", {
       method: "delete",
@@ -53,8 +59,8 @@ async function deleteTodo() {
         todoIdFromJSFile: todoId,
       }),
     });
-    location.reload();
   } catch (err) {
     console.log(err);
   }
+  location.reload();
 }

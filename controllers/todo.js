@@ -28,4 +28,39 @@ module.exports = {
       console.log(err);
     }
   },
+  markCompleted: async (req, res) => {
+    try {
+      console.log(req.body.todoItem);
+      await Todo.findOneAndUpdate(
+        { _id: req.body.todoIdFromJSFile },
+        { completed: true }
+      );
+      console.log("Todo has been updated!");
+      res.json("marked updated");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  markUnCompleted: async (req, res) => {
+    try {
+      console.log(req.body.todoItem);
+      await Todo.findOneAndUpdate(
+        { _id: req.body.todoIdFromJSFile },
+        { completed: false }
+      );
+      console.log("Todo has been updated to incomplete!");
+      res.json("Todo has been updated to incomplete!");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteTodo: async (req, res) => {
+    try {
+      console.log(req.body.todoItem);
+      await Todo.findOneAndDelete({ _id: req.body.todoIdFromJSFile });
+      console.log("Todo has been deleted!");
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
